@@ -43,9 +43,6 @@
 			"@/utils/*": [
 				"utils/*"
 			],
-			"@/store/*": [
-				"store/*"
-			],
 			"@/assets/*": [
 				"assets/*"
 			]

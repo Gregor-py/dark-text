@@ -22,9 +22,6 @@
 			"@/*": [
 				"./src/*"
 			],
-			"@/components/*": [
-				"components/*"
-			],
 			"@/ui/*": [
 				"components/ui/*"
 			],

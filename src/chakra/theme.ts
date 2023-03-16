@@ -1,7 +1,12 @@
+import { Button } from '@/chakra/button';
 import { extendTheme } from '@chakra-ui/react';
 
 export const theme = extendTheme({
   colors: {
+    text: {
+      100: '#FEFEFE',
+      200: '#ADBAC3'
+    },
     bg: {
       100: '#26273B', // cards bg
       200: '#1D253A', // sidebar bg
@@ -17,8 +22,12 @@ export const theme = extendTheme({
   styles: {
     global: () => ({
       body: {
-        bg: 'bg.300'
+        bg: 'bg.300',
+        color: 'text.200'
       }
     })
+  },
+  components: {
+    Button,
   }
 });

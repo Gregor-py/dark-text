@@ -1,8 +1,9 @@
-import {NextPage} from "next";
+import { Button } from '@chakra-ui/button';
+import { NextPage } from 'next';
 
 const Home: NextPage = () => {
-	return (
-		<div>Hello world!</div>
-	)
-}
+  return (
+    <Button>Hello world</Button>
+  );
+};
 export default Home;

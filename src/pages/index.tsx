@@ -2,7 +2,7 @@ import {NextPage} from "next";
 
 const Home: NextPage = () => {
 	return (
-		<div>Hello</div>
+		<div>Hello world!</div>
 	)
 }
 export default Home;

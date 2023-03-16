@@ -1,7 +1,7 @@
 import Sidebar from '@/components/layout/Sidebar';
 import { Box } from '@chakra-ui/react';
 import React, { FC } from 'react';
-import Header from './Header';
+import Header from './header/Header';
 
 interface Layout {
   children: React.ReactNode;

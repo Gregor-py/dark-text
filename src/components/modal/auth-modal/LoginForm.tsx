@@ -1,3 +1,4 @@
+import { validateEmailPattern } from '@/helpers/formHelpers';
 import { setView } from '@/store/auth-modal/AuthModalSlice';
 import {
   Button,
@@ -41,7 +42,7 @@ const LoginForm: FC = () => {
             {...register('email', {
               required: 'This is required',
               pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                value: validateEmailPattern,
                 message: "Invalid email address"
               }
             })}

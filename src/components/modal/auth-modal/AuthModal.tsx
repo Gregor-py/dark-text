@@ -1,4 +1,5 @@
 import LoginForm from '@/components/modal/auth-modal/LoginForm';
+import SignUpForm from '@/components/modal/auth-modal/SignUpForm';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import {
   Button,
@@ -10,21 +11,17 @@ import {
   ModalOverlay,
   useDisclosure
 } from '@chakra-ui/react';
-import React, { FC, useRef } from 'react';
+import React, { FC } from 'react';
 
 const AuthModal: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   
-  const initialRef = useRef(null);
-  const finalRef = useRef(null);
   const view = useTypedSelector((state) => state.authModal.view);
   return (
     <>
       <Button onClick={onOpen}>Open Modal</Button>
       
       <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
         isOpen={isOpen}
         onClose={onClose}
       >
@@ -38,6 +35,7 @@ const AuthModal: FC = () => {
           <ModalCloseButton />
           <ModalBody>
             {view === 'login' && <LoginForm />}
+            {view === 'signup' && <SignUpForm />}
           </ModalBody>
         
         </ModalContent>

@@ -35,7 +35,7 @@ const AuthModal: FC = () => {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {view === 'login' && <LoginForm />}
+            {view === 'login' && <LoginForm closeModal={onClose} />}
             {view === 'signup' && <SignUpForm closeModal={onClose} />}
           </ModalBody>
         

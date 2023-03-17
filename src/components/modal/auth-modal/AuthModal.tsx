@@ -22,6 +22,7 @@ const AuthModal: FC = () => {
       <Button colorScheme={'blue'} onClick={onOpen}>Open Modal</Button>
       
       <Modal
+        closeOnOverlayClick={false}
         isOpen={isOpen}
         onClose={onClose}
       >

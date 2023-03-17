@@ -1,11 +1,12 @@
-import { Box, Button, Flex } from '@chakra-ui/react';
+import AuthModal from '@/components/modal/auth-modal/AuthModal';
+import { Box, Flex } from '@chakra-ui/react';
 import React, { FC } from 'react';
 
 const Header: FC = () => {
   return (
     <Flex>
       <Box>
-        <Button></Button>
+        <AuthModal />
       </Box>
     </Flex>
   );

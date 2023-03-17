@@ -28,9 +28,6 @@
 			"@/screens/*": [
 				"components/screens/*"
 			],
-			"@/hooks/*": [
-				"hooks/*"
-			],
 			"@/shared/*": [
 				"shared/*"
 			],

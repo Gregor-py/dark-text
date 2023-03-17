@@ -7,5 +7,5 @@ export const store = configureStore({
   }),
   devTools: process.env.NEXT_PUBLIC_ENV === 'dev'
 });
-export type RootState = ReturnType<typeof store.getState>
+export type TypeRootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

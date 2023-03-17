@@ -7,12 +7,12 @@ export const Button: ComponentStyleConfig = {
   },
   variants: {
     solid: {
-      bg: 'yellow.400',
-      color: 'text.100',
-      _hover: {
-        bg: 'yellow.500',
-        boxShadow: '10px 10px yellow.400'
-      }
+      // bg: 'yellow.400',
+      // color: 'text.100',
+      // _hover: {
+      //   bg: 'yellow.500',
+      //   boxShadow: '10px 10px yellow.400'
+      // }
     }
   },
   defaultProps: {

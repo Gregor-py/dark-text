@@ -1,3 +1,6 @@
+import LoginForm from '@/components/modal/auth-modal/LoginForm';
+import { auth } from '@/firebase/clientApp';
+import { firebaseAuthErrors } from '@/firebase/firebaseErrors';
 import { validateEmailPattern } from '@/helpers/formHelpers';
 import { setView } from '@/store/auth-modal/AuthModalSlice';
 import {
@@ -9,9 +12,11 @@ import {
   FormLabel,
   Input,
   InputGroup, InputRightElement,
-  Text
+  Text,
+  useToast
 } from '@chakra-ui/react';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
@@ -21,7 +26,12 @@ interface SignUpForm {
   confirmPassword: string;
 }
 
-const SignUpForm: FC = () => {
+interface SignUpFormProps {
+  closeModal: () => void;
+}
+
+const SignUpForm: FC<SignUpFormProps> = ({ closeModal }) => {
+  const toast = useToast();
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -29,10 +39,40 @@ const SignUpForm: FC = () => {
     watch,
     formState: { errors, isSubmitting }
   } = useForm<SignUpForm>();
-  const onSubmit: SubmitHandler<SignUpForm> = data => console.log(data);
-  
+  const [
+    createUserWithEmailAndPassword,
+    user,
+    loading,
+    error
+  ] = useCreateUserWithEmailAndPassword(auth);
+  const onSubmit: SubmitHandler<LoginForm> = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+  };
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
+  useEffect(() => {
+    if (user) {
+      toast({
+        title: 'Account created.',
+        status: 'success',
+        duration: 3000,
+        isClosable: true
+      });
+      closeModal();
+    }
+  }, [user]);
+  
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: firebaseAuthErrors[error.message as keyof typeof firebaseAuthErrors],
+        status: 'error',
+        duration: 3000,
+        isClosable: true
+      });
+    }
+  }, [error]);
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -64,7 +104,11 @@ const SignUpForm: FC = () => {
               id='password'
               placeholder='password'
               {...register('password', {
-                required: 'This is required'
+                required: 'This is required',
+                minLength: {
+                  value: 6,
+                  message: 'Password must have at least 6 characters'
+                }
               })}
             />
             <InputRightElement width='4.5rem'>
@@ -110,7 +154,7 @@ const SignUpForm: FC = () => {
         </FormControl>
       </Flex>
       
-      <Button w={'full'} mt={4} colorScheme='green' isLoading={isSubmitting} type='submit'>
+      <Button w={'full'} mt={4} colorScheme='green' isLoading={isSubmitting || loading} type='submit'>
         Sign up
       </Button>
       

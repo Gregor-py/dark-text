@@ -12,6 +12,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import React, { FC } from 'react';
+import ResetPasswordForm from './ResetPasswordForm';
 
 const AuthModal: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -37,8 +38,8 @@ const AuthModal: FC = () => {
           <ModalBody>
             {view === 'login' && <LoginForm closeModal={onClose} />}
             {view === 'signup' && <SignUpForm closeModal={onClose} />}
+            {view === 'resetPassword' && <ResetPasswordForm />}
           </ModalBody>
-        
         </ModalContent>
       </Modal>
     </>

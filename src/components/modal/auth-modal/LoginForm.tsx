@@ -137,6 +137,20 @@ const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
             </Text>
           </Center>
         </Flex>
+        <Flex mt={2} w={'full'} flexDirection={'column'}>
+          <Center gap={1} mt={0}>
+            Forgot password?
+            <Text
+              onClick={() => dispatch(setView('resetPassword'))}
+              cursor={'pointer'}
+              fontWeight={600}
+              color={'blue.400'}
+              textDecoration={'underline'}
+            >
+              Reset password
+            </Text>
+          </Center>
+        </Flex>
       </form>
     );
   }

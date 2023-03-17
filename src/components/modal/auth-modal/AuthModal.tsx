@@ -19,7 +19,7 @@ const AuthModal: FC = () => {
   const view = useTypedSelector((state) => state.authModal.view);
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <Button colorScheme={'blue'} onClick={onOpen}>Open Modal</Button>
       
       <Modal
         isOpen={isOpen}

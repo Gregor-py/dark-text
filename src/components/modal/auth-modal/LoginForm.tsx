@@ -65,7 +65,7 @@ const LoginForm: FC = () => {
               })}
             />
             <InputRightElement width='4.5rem'>
-              <Button h='1.75rem' size='sm' onClick={() => setShowPassword(!showPassword)}>
+              <Button colorScheme={!showPassword ? 'green' : 'red'} h='1.75rem' size='sm' onClick={() => setShowPassword(!showPassword)}>
                 {showPassword ? 'Hide' : 'Show'}
               </Button>
             </InputRightElement>
@@ -77,7 +77,7 @@ const LoginForm: FC = () => {
         </FormControl>
       </Flex>
       
-      <Button w={'full'} mt={4} colorScheme='teal' isLoading={isSubmitting} type='submit'>
+      <Button w={'full'} mt={4} colorScheme='green' isLoading={isSubmitting} type='submit'>
         Login
       </Button>
       

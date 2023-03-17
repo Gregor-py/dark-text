@@ -31,8 +31,8 @@ const SignUpForm: FC = () => {
   } = useForm<SignUpForm>();
   const onSubmit: SubmitHandler<SignUpForm> = data => console.log(data);
   
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -68,7 +68,8 @@ const SignUpForm: FC = () => {
               })}
             />
             <InputRightElement width='4.5rem'>
-              <Button h='1.75rem' size='sm' onClick={() => setShowPassword(!showPassword)}>
+              <Button colorScheme={!showPassword ? 'green' : 'red'}
+                      h='1.75rem' size='sm' onClick={() => setShowPassword(!showPassword)}>
                 {showPassword ? 'Hide' : 'Show'}
               </Button>
             </InputRightElement>
@@ -97,7 +98,8 @@ const SignUpForm: FC = () => {
               })}
             />
             <InputRightElement width='4.5rem'>
-              <Button h='1.75rem' size='sm' onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+              <Button colorScheme={!showConfirmPassword ? 'green' : 'red'} h='1.75rem' size='sm'
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                 {showConfirmPassword ? 'Hide' : 'Show'}
               </Button>
             </InputRightElement>
@@ -108,7 +110,7 @@ const SignUpForm: FC = () => {
         </FormControl>
       </Flex>
       
-      <Button w={'full'} mt={4} colorScheme='teal' isLoading={isSubmitting} type='submit'>
+      <Button w={'full'} mt={4} colorScheme='green' isLoading={isSubmitting} type='submit'>
         Sign up
       </Button>
       

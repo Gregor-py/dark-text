@@ -1,6 +1,16 @@
 import { setView } from '@/store/auth-modal/AuthModalSlice';
-import { Button, Center, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import {
+  Button,
+  Center,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  InputGroup, InputRightElement,
+  Text
+} from '@chakra-ui/react';
+import React, { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
@@ -19,6 +29,9 @@ const SignUpForm: FC = () => {
     formState: { errors, isSubmitting }
   } = useForm<SignUpForm>();
   const onSubmit: SubmitHandler<SignUpForm> = data => console.log(data);
+  
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -43,13 +56,22 @@ const SignUpForm: FC = () => {
         
         <FormControl isInvalid={!!errors.password}>
           <FormLabel htmlFor='password'>Password</FormLabel>
-          <Input
-            id='password'
-            placeholder='password'
-            {...register('password', {
-              required: 'This is required'
-            })}
-          />
+          <InputGroup size='md'>
+            <Input
+              pr='4.5rem'
+              type={showPassword ? 'text' : 'password'}
+              id='password'
+              placeholder='password'
+              {...register('password', {
+                required: 'This is required'
+              })}
+            />
+            <InputRightElement width='4.5rem'>
+              <Button h='1.75rem' size='sm' onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? 'Hide' : 'Show'}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
           <FormErrorMessage>
             {errors.password && errors.password.message}
           </FormErrorMessage>
@@ -57,18 +79,28 @@ const SignUpForm: FC = () => {
         
         <FormControl isInvalid={!!errors.confirmPassword}>
           <FormLabel htmlFor='confirmPassword'>Confirm password</FormLabel>
-          <Input
-            id='confirmPassword'
-            placeholder='confirm password'
-            {...register('confirmPassword', {
-              required: 'This is required',
-              validate: (value: string) => {
-                if (watch('password') !== value) {
-                  return 'Your passwords do not match';
+          
+          <InputGroup size='md'>
+            <Input
+              pr='4.5rem'
+              type={showConfirmPassword ? 'text' : 'password'}
+              id='confirmPassword'
+              placeholder='confirm password'
+              {...register('confirmPassword', {
+                required: 'This is required',
+                validate: (value: string) => {
+                  if (watch('password') !== value) {
+                    return 'Your passwords do not match';
+                  }
                 }
-              }
-            })}
-          />
+              })}
+            />
+            <InputRightElement width='4.5rem'>
+              <Button h='1.75rem' size='sm' onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                {showConfirmPassword ? 'Hide' : 'Show'}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
           <FormErrorMessage>
             {errors.confirmPassword && errors.confirmPassword.message}
           </FormErrorMessage>

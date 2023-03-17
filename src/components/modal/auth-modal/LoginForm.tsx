@@ -1,6 +1,16 @@
 import { setView } from '@/store/auth-modal/AuthModalSlice';
-import { Button, Center, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import {
+  Button,
+  Center,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input, InputGroup,
+  InputRightElement,
+  Text
+} from '@chakra-ui/react';
+import React, { FC, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
@@ -17,6 +27,8 @@ const LoginForm: FC = () => {
     formState: { errors, isSubmitting }
   } = useForm<LoginForm>();
   const onSubmit: SubmitHandler<LoginForm> = data => console.log(data);
+  
+  const [showPassword, setShowPassword] = useState(false)
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -41,13 +53,23 @@ const LoginForm: FC = () => {
   
         <FormControl isInvalid={!!errors.password}>
           <FormLabel htmlFor='password'>Password</FormLabel>
-          <Input
-            id='password'
-            placeholder='password'
-            {...register('password', {
-              required: 'This is required'
-            })}
-          />
+          <InputGroup size='md'>
+            <Input
+              pr='4.5rem'
+              type={showPassword ? 'text' : 'password'}
+              id='password'
+              placeholder='password'
+              {...register('password', {
+                required: 'This is required'
+              })}
+            />
+            <InputRightElement width='4.5rem'>
+              <Button h='1.75rem' size='sm' onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? 'Hide' : 'Show'}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+          
           <FormErrorMessage>
             {errors.password && errors.password.message}
           </FormErrorMessage>

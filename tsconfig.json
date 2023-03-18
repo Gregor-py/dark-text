@@ -18,30 +18,25 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
+		"baseUrl": "./src/",
 		"paths": {
-			"@/*": [
-				"./src/*"
+			"@/components/*": [
+				"components/*"
 			],
-			"@/ui/*": [
-				"components/ui/*"
+			"@/firebase/*": [
+				"firebase/*"
 			],
-			"@/screens/*": [
-				"components/screens/*"
+			"@/store/*": [
+				"store/*"
 			],
-			"@/shared/*": [
-				"shared/*"
+			"@/hooks/*": [
+				"hooks/*"
 			],
-			"@/config/*": [
-				"config/*"
+			"@/helpers/*": [
+				"helpers/*"
 			],
-			"@/services/*": [
-				"services/*"
-			],
-			"@/utils/*": [
-				"utils/*"
-			],
-			"@/assets/*": [
-				"assets/*"
+			"@/chakra/*": [
+				"chakra/*"
 			]
 		}
 	},

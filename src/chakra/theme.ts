@@ -1,5 +1,6 @@
 import { Button } from '@/chakra/button';
 import { extendTheme } from '@chakra-ui/react';
+import { Menu } from './menu';
 import { Modal } from './modal';
 
 export const theme = extendTheme({
@@ -30,6 +31,7 @@ export const theme = extendTheme({
   },
   components: {
     Button,
-    Modal
+    Modal,
+    Menu
   }
 });

@@ -3,7 +3,7 @@ import OAuthButtons from '@/components/modal/auth-modal/OAuthButtons';
 import SignUpForm from '@/components/modal/auth-modal/SignUpForm';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import { setIsOpen } from '@/store/auth-modal/AuthModalSlice';
-import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from '@chakra-ui/react';
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import ResetPasswordForm from './ResetPasswordForm';
@@ -11,14 +11,9 @@ import ResetPasswordForm from './ResetPasswordForm';
 const AuthModal: FC = () => {
   const dispatch = useDispatch();
   const { view, isOpen } = useTypedSelector((state) => state.authModal);
-  const onOpen = () => dispatch(setIsOpen(true));
   const onClose = () => dispatch(setIsOpen(false));
   return (
     <>
-      <Button colorScheme={'blue'} onClick={onOpen}>
-        Login
-      </Button>
-      
       <Modal
         closeOnOverlayClick={false}
         isOpen={isOpen}

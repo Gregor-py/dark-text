@@ -8,8 +8,8 @@ interface OAuthButtons {
   closeModal: () => void;
 }
 
-const OAuthButtons: FC<OAuthButtons> = ({closeModal}) => {
-  const toast = useToast()
+const OAuthButtons: FC<OAuthButtons> = ({ closeModal }) => {
+  const toast = useToast();
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const handleClick = async () => {
     await signInWithGoogle();
@@ -35,12 +35,14 @@ const OAuthButtons: FC<OAuthButtons> = ({closeModal}) => {
         duration: 3000,
         isClosable: true
       });
+      console.log(error.message);
     }
   }, [error]);
   
   return (
     <Box>
-      <Button onClick={handleClick} isLoading={loading} bg={'whiteAlpha.900'} color={'black'} colorScheme={''} w={'full'}>
+      <Button onClick={handleClick} isLoading={loading} bg={'whiteAlpha.900'} color={'black'} colorScheme={''}
+              w={'full'}>
         <Flex alignItems={'center'} gap={5}>
           <Image src={'images/google.png'} w={25} h={25} />
           <Box>

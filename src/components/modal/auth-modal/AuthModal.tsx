@@ -1,4 +1,5 @@
 import LoginForm from '@/components/modal/auth-modal/LoginForm';
+import OAuthButtons from '@/components/modal/auth-modal/OAuthButtons';
 import SignUpForm from '@/components/modal/auth-modal/SignUpForm';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import {
@@ -36,6 +37,8 @@ const AuthModal: FC = () => {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            {view !== 'resetPassword' && <OAuthButtons closeModal={() => onClose()} />}
+            
             {view === 'login' && <LoginForm closeModal={onClose} />}
             {view === 'signup' && <SignUpForm closeModal={onClose} />}
             {view === 'resetPassword' && <ResetPasswordForm />}

@@ -1,8 +1,8 @@
-import LoginForm from '@/components/modal/auth-modal/LoginForm';
-import { auth } from '@/firebase/clientApp';
-import { firebaseAuthErrors } from '@/firebase/firebaseErrors';
-import { validateEmailPattern } from '@/helpers/formHelpers';
-import { setView } from '@/store/auth-modal/AuthModalSlice';
+import LoginForm from "@/components/modal/auth-modal/LoginForm";
+import { auth } from "@/firebase/clientApp";
+import { firebaseAuthErrors } from "@/firebase/firebaseErrors";
+import { validateEmailPattern } from "@/helpers/formHelpers";
+import { setView } from "@/store/auth-modal/AuthModalSlice";
 import {
   Button,
   Center,
@@ -11,14 +11,15 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  InputGroup, InputRightElement,
+  InputGroup,
+  InputRightElement,
   Text,
   useToast
-} from '@chakra-ui/react';
-import React, { FC, useEffect, useState } from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+} from "@chakra-ui/react";
+import React, { FC, useEffect, useState } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 interface SignUpForm {
   email: string;
@@ -39,54 +40,51 @@ const SignUpForm: FC<SignUpFormProps> = ({ closeModal }) => {
     watch,
     formState: { errors, isSubmitting }
   } = useForm<SignUpForm>();
-  const [
-    createUserWithEmailAndPassword,
-    user,
-    loading,
-    error
-  ] = useCreateUserWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
   const onSubmit: SubmitHandler<LoginForm> = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
   };
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+
   useEffect(() => {
     if (user) {
       toast({
-        title: 'Account created.',
-        status: 'success',
+        title: "Account created.",
+        status: "success",
         duration: 3000,
         isClosable: true
       });
       closeModal();
     }
-  }, [user]);
-  
+  }, [closeModal, toast, user]);
+
   useEffect(() => {
     if (error) {
       toast({
-        title: firebaseAuthErrors[error.message as keyof typeof firebaseAuthErrors],
-        status: 'error',
+        title:
+          firebaseAuthErrors[error.message as keyof typeof firebaseAuthErrors],
+        status: "error",
         duration: 3000,
         isClosable: true
       });
     }
-  }, [error]);
-  
+  }, [error, toast]);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Flex flexDirection={'column'} gap={5}>
+      <Flex flexDirection={"column"} gap={5}>
         <FormControl isInvalid={!!errors.email}>
-          <FormLabel htmlFor='name'>Email</FormLabel>
+          <FormLabel htmlFor="name">Email</FormLabel>
           <Input
-            id='email'
-            placeholder='email'
-            {...register('email', {
-              required: 'This is required',
+            id="email"
+            placeholder="email"
+            {...register("email", {
+              required: "This is required",
               pattern: {
                 value: validateEmailPattern,
-                message: 'Invalid email address'
+                message: "Invalid email address"
               }
             })}
           />
@@ -94,27 +92,31 @@ const SignUpForm: FC<SignUpFormProps> = ({ closeModal }) => {
             {errors.email && errors.email.message}
           </FormErrorMessage>
         </FormControl>
-        
+
         <FormControl isInvalid={!!errors.password}>
-          <FormLabel htmlFor='password'>Password</FormLabel>
-          <InputGroup size='md'>
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <InputGroup size="md">
             <Input
-              pr='4.5rem'
-              type={showPassword ? 'text' : 'password'}
-              id='password'
-              placeholder='password'
-              {...register('password', {
-                required: 'This is required',
+              pr="4.5rem"
+              type={showPassword ? "text" : "password"}
+              id="password"
+              placeholder="password"
+              {...register("password", {
+                required: "This is required",
                 minLength: {
                   value: 6,
-                  message: 'Password must have at least 6 characters'
+                  message: "Password must have at least 6 characters"
                 }
               })}
             />
-            <InputRightElement width='4.5rem'>
-              <Button colorScheme={!showPassword ? 'green' : 'red'}
-                      h='1.75rem' size='sm' onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? 'Hide' : 'Show'}
+            <InputRightElement width="4.5rem">
+              <Button
+                colorScheme={!showPassword ? "green" : "red"}
+                h="1.75rem"
+                size="sm"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
               </Button>
             </InputRightElement>
           </InputGroup>
@@ -122,29 +124,33 @@ const SignUpForm: FC<SignUpFormProps> = ({ closeModal }) => {
             {errors.password && errors.password.message}
           </FormErrorMessage>
         </FormControl>
-        
+
         <FormControl isInvalid={!!errors.confirmPassword}>
-          <FormLabel htmlFor='confirmPassword'>Confirm password</FormLabel>
-          
-          <InputGroup size='md'>
+          <FormLabel htmlFor="confirmPassword">Confirm password</FormLabel>
+
+          <InputGroup size="md">
             <Input
-              pr='4.5rem'
-              type={showConfirmPassword ? 'text' : 'password'}
-              id='confirmPassword'
-              placeholder='confirm password'
-              {...register('confirmPassword', {
-                required: 'This is required',
+              pr="4.5rem"
+              type={showConfirmPassword ? "text" : "password"}
+              id="confirmPassword"
+              placeholder="confirm password"
+              {...register("confirmPassword", {
+                required: "This is required",
                 validate: (value: string) => {
-                  if (watch('password') !== value) {
-                    return 'Your passwords do not match';
+                  if (watch("password") !== value) {
+                    return "Your passwords do not match";
                   }
                 }
               })}
             />
-            <InputRightElement width='4.5rem'>
-              <Button colorScheme={!showConfirmPassword ? 'green' : 'red'} h='1.75rem' size='sm'
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                {showConfirmPassword ? 'Hide' : 'Show'}
+            <InputRightElement width="4.5rem">
+              <Button
+                colorScheme={!showConfirmPassword ? "green" : "red"}
+                h="1.75rem"
+                size="sm"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? "Hide" : "Show"}
               </Button>
             </InputRightElement>
           </InputGroup>
@@ -153,20 +159,26 @@ const SignUpForm: FC<SignUpFormProps> = ({ closeModal }) => {
           </FormErrorMessage>
         </FormControl>
       </Flex>
-      
-      <Button w={'full'} mt={4} colorScheme='green' isLoading={isSubmitting || loading} type='submit'>
+
+      <Button
+        w={"full"}
+        mt={4}
+        colorScheme="green"
+        isLoading={isSubmitting || loading}
+        type="submit"
+      >
         Sign up
       </Button>
-      
-      <Flex mt={4} w={'full'} flexDirection={'column'}>
+
+      <Flex mt={4} w={"full"} flexDirection={"column"}>
         <Center gap={1} mt={4}>
           Already have an account?
           <Text
-            onClick={() => dispatch(setView('login'))}
-            cursor={'pointer'}
+            onClick={() => dispatch(setView("login"))}
+            cursor={"pointer"}
             fontWeight={600}
-            color={'blue.400'}
-            textDecoration={'underline'}
+            color={"blue.400"}
+            textDecoration={"underline"}
           >
             Login
           </Text>

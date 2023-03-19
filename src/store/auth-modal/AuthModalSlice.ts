@@ -1,21 +1,24 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface AuthModalSliceState {
   isOpen: boolean;
-  view: 'login' | 'signup' | 'resetPassword';
+  view: "login" | "signup" | "resetPassword";
 }
 
 const initialState: AuthModalSliceState = {
   isOpen: false,
-  view: 'login'
+  view: "login"
 };
 
 export const authModalSlice = createSlice({
-  name: 'auth-modal',
+  name: "auth-modal",
   initialState,
-  
+
   reducers: {
-    setView: (state, action: PayloadAction<'login' | 'signup' | 'resetPassword'>) => {
+    setView: (
+      state,
+      action: PayloadAction<"login" | "signup" | "resetPassword">
+    ) => {
       state.view = action.payload;
     },
     setIsOpen: (state, action: PayloadAction<boolean>) => {

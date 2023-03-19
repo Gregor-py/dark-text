@@ -23,7 +23,6 @@ module.exports = {
     "quotes": ["error", "double"],
     "import/no-unresolved": 0,
     "indent": ["error", 2],
-    "comma-dangle": ["error", "never"],
-    "quoteProps": ["off", "consistent-as-needed"]
+    "comma-dangle": ["error", "consistent"]
   }
 };

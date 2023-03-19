@@ -1,9 +1,8 @@
-import { ComponentStyleConfig } from '@chakra-ui/react';
-
+import { ComponentStyleConfig } from "@chakra-ui/react";
 
 export const Button: ComponentStyleConfig = {
   baseStyle: {
-    borderRadius: '10px'
+    borderRadius: "10px"
   },
   variants: {
     solid: {
@@ -16,6 +15,6 @@ export const Button: ComponentStyleConfig = {
     }
   },
   defaultProps: {
-    variant: 'solid'
+    variant: "solid"
   }
 };

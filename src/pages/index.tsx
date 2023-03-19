@@ -1,5 +1,5 @@
-import { NextPage } from 'next';
-import Head from 'next/head';
+import { NextPage } from "next";
+import Head from "next/head";
 
 const Home: NextPage = () => {
   return (
@@ -7,7 +7,6 @@ const Home: NextPage = () => {
       <Head>
         <title>Home page</title>
       </Head>
-      
     </div>
   );
 };

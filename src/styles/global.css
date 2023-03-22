@@ -1,3 +1,12 @@
+.ProseMirror:focus {
+	outline: none;
+}
+.ProseMirror {
+	border: 2px solid #ADBAC3;
+	border-radius: 10px;
+	padding: 10px;
+}
+
 .ProseMirror a {
 	color: #76E4F7;
 	text-decoration: underline;

@@ -5,12 +5,14 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { FC } from "react";
 import ToolsBar from "./Tools";
+import Underline from "@tiptap/extension-underline";
 
 const TextEditor: FC = () => {
   const editor = useEditor({
     extensions: [
       Color.configure({ types: [TextStyle.name, ListItem.name] }),
       TextStyle,
+      Underline,
       StarterKit.configure({
         bulletList: {
           keepMarks: true,

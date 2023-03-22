@@ -6,6 +6,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import React from "react";
 import { Provider } from "react-redux";
+import "../styles/global.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

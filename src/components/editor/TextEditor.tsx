@@ -1,4 +1,5 @@
 import { Color } from "@tiptap/extension-color";
+import { Link } from "@tiptap/extension-link";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import { EditorContent, useEditor } from "@tiptap/react";
@@ -13,6 +14,7 @@ const TextEditor: FC = () => {
       Color.configure({ types: [TextStyle.name, ListItem.name] }),
       TextStyle,
       Underline,
+      Link,
       StarterKit.configure({
         bulletList: {
           keepMarks: true,

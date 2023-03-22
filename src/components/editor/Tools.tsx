@@ -9,6 +9,7 @@ import {
   MdFormatUnderlined,
   MdStrikethroughS
 } from "react-icons/md";
+import SetLink from "./SetLink";
 
 const ToolsBar: FC<{ editor: Editor | null }> = ({ editor }) => {
   if (!editor) {
@@ -42,6 +43,9 @@ const ToolsBar: FC<{ editor: Editor | null }> = ({ editor }) => {
           isActive={editor.isActive("underline")}
           onClick={() => editor.chain().focus().toggleUnderline().run()}
         />
+      </ButtonsGroup>
+      <ButtonsGroup separatorRight={true}>
+        <SetLink editor={editor} />
       </ButtonsGroup>
     </Flex>
   );

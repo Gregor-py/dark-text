@@ -2,6 +2,7 @@ import { Button } from "@/chakra/button";
 import { extendTheme } from "@chakra-ui/react";
 import { Menu } from "./menu";
 import { Modal } from "./modal";
+import { Popover } from "./popover";
 
 export const theme = extendTheme({
   colors: {
@@ -32,6 +33,7 @@ export const theme = extendTheme({
   components: {
     Button,
     Modal,
-    Menu
+    Menu,
+    Popover
   }
 });

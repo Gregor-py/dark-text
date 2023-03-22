@@ -29,10 +29,7 @@ const TextEditor: FC = () => {
   return (
     <>
       <ToolsBar editor={editor} />
-      <EditorContent
-        style={{ border: "2px solid #fff", padding: 10 }}
-        editor={editor}
-      />
+      <EditorContent style={{ marginTop: 20 }} editor={editor} />
     </>
   );
 };

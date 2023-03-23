@@ -7,6 +7,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { FC } from "react";
 import ToolsBar from "./Tools";
 import Underline from "@tiptap/extension-underline";
+import TextAlign from "@tiptap/extension-text-align";
 
 const TextEditor: FC = () => {
   const editor = useEditor({
@@ -14,6 +15,9 @@ const TextEditor: FC = () => {
       Color.configure({ types: [TextStyle.name, ListItem.name] }),
       TextStyle,
       Underline,
+      TextAlign.configure({
+        types: ["heading", "paragraph"]
+      }),
       Link,
       StarterKit.configure({
         bulletList: {

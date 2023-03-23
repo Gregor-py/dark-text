@@ -1,5 +1,6 @@
 import ButtonsGroup from "@/components/editor/ButtonsGroup";
 import IconEditorButton from "@/components/editor/IconEditorButton";
+import TextAlignTools from "@/components/editor/TextAlignToold";
 import { Flex } from "@chakra-ui/react";
 import { Editor } from "@tiptap/react";
 import { FC } from "react";
@@ -47,6 +48,7 @@ const ToolsBar: FC<{ editor: Editor | null }> = ({ editor }) => {
       <ButtonsGroup separatorRight={true}>
         <SetLink editor={editor} />
       </ButtonsGroup>
+      <TextAlignTools editor={editor} />
     </Flex>
   );
 };

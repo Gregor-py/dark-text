@@ -1,25 +1,46 @@
-import { firestore } from "@/firebase/clientApp";
-import { Center, Icon, Tooltip } from "@chakra-ui/react";
+import { auth, firestore } from "@/firebase/clientApp";
+import { DOCUMENTS_COLLECTION, IDocument } from "@/firebase/collections";
+import { Center, Icon, Tooltip, useToast } from "@chakra-ui/react";
 import { collection, doc, setDoc } from "@firebase/firestore";
 import { useRouter } from "next/router";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { MdAddCircleOutline } from "react-icons/md";
 
 interface CreateDocumentButton {}
 
 const CreateDocumentButton: FC<CreateDocumentButton> = () => {
   const { push } = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
+  const [user, loading] = useAuthState(auth);
+  const [isLoading, setIsLoading] = useState(loading);
   const handleCreateDocument = async () => {
+    if (!user?.uid || !user) {
+      toast({
+        title: "First you need to register",
+        status: "error",
+        duration: 3000,
+        isClosable: true
+      });
+      return;
+    }
+
     setIsLoading(true);
-    const newDocumentRef = doc(collection(firestore, "documents"));
-    await setDoc(newDocumentRef, {
-      name: "New document"
-    });
+    const newDocumentRef = doc(collection(firestore, DOCUMENTS_COLLECTION));
+    const newDocumentData: IDocument = {
+      name: "New document",
+      creator: user.uid,
+      text: ""
+    };
+    await setDoc(newDocumentRef, newDocumentData);
 
     await push(`/document/${newDocumentRef.id}`);
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, [user]);
 
   return (
     <Tooltip label="Create document">

@@ -1,4 +1,4 @@
-import CreateDocumentButton from "@/components/screens/CreateDocumentButton";
+import CreateDocumentButton from "@/components/screens/home/CreateDocumentButton";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import Head from "next/head";
 import { FC } from "react";

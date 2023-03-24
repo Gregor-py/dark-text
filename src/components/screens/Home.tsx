@@ -1,4 +1,5 @@
-import { Box } from "@chakra-ui/react";
+import CreateDocumentButton from "@/components/ui/CreateDocumentButton";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 import Head from "next/head";
 import { FC } from "react";
 
@@ -8,14 +9,21 @@ const Home: FC = () => {
       <Head>
         <title>Home page</title>
       </Head>
-      <Box fontSize={20}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
-        facere fuga nam officia rem? Aliquid eius itaque maiores maxime minima
-        minus modi nobis rem voluptas? Autem minus provident saepe veritatis!
-        minus modi nobis rem voluptas? Autem minus provident saepe veritatis!
-        minus modi nobis rem voluptas? Autem minus provident saepe veritatis!
-        minus modi nobis rem voluptas? Autem minus provident saepe veritatis!
-        minus modi nobis rem voluptas? Autem minus provident saepe veritatis!
+      <Box>
+        <Grid templateColumns="repeat(6, 1fr)" gap={4}>
+          <GridItem>
+            <CreateDocumentButton onClick={() => console.log(0)} />
+          </GridItem>
+          {[1, 2, 3, 4, 5, 6].map((el) => (
+            <GridItem
+              borderRadius={10}
+              key={el}
+              w="100%"
+              h="300"
+              bg="blue.500"
+            />
+          ))}
+        </Grid>
       </Box>
     </>
   );

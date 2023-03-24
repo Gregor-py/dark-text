@@ -1,4 +1,5 @@
 import ButtonsGroup from "@/components/editor/ButtonsGroup";
+import HeadingTools from "@/components/editor/HeadingTools";
 import IconEditorButton from "@/components/editor/IconEditorButton";
 import TextAlignTools from "@/components/editor/TextAlignToold";
 import { Flex } from "@chakra-ui/react";
@@ -10,7 +11,7 @@ import {
   MdFormatUnderlined,
   MdStrikethroughS
 } from "react-icons/md";
-import SetLink from "./SetLink";
+import SetLinkTool from "./SetLinkTool";
 
 const ToolsBar: FC<{ editor: Editor | null }> = ({ editor }) => {
   if (!editor) {
@@ -45,10 +46,10 @@ const ToolsBar: FC<{ editor: Editor | null }> = ({ editor }) => {
           onClick={() => editor.chain().focus().toggleUnderline().run()}
         />
       </ButtonsGroup>
-      <ButtonsGroup separatorRight={true}>
-        <SetLink editor={editor} />
-      </ButtonsGroup>
+
       <TextAlignTools editor={editor} />
+      <HeadingTools editor={editor} />
+      <SetLinkTool editor={editor} />
     </Flex>
   );
 };

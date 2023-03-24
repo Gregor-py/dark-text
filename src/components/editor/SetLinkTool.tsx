@@ -14,8 +14,9 @@ import {
 import { Editor } from "@tiptap/react";
 import { ChangeEvent, FC, useState } from "react";
 import { MdAddLink } from "react-icons/md";
+import ButtonsGroup from "./ButtonsGroup";
 
-const SetLink: FC<{ editor: Editor }> = ({ editor }) => {
+const SetLinkTool: FC<{ editor: Editor }> = ({ editor }) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
   const [linkHref, setLinkHref] = useState("");
   const handleClick = () => {
@@ -31,7 +32,7 @@ const SetLink: FC<{ editor: Editor }> = ({ editor }) => {
     setLinkHref("");
   };
   return (
-    <>
+    <ButtonsGroup separatorRight={true}>
       <IconEditorButton
         icon={MdAddLink}
         ariaLabel={"link"}
@@ -58,8 +59,8 @@ const SetLink: FC<{ editor: Editor }> = ({ editor }) => {
           </PopoverFooter>
         </PopoverContent>
       </Popover>
-    </>
+    </ButtonsGroup>
   );
 };
 
-export default SetLink;
+export default SetLinkTool;

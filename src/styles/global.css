@@ -11,3 +11,13 @@
 	color: #76E4F7;
 	text-decoration: underline;
 }
+
+.ProseMirror h1 {
+	font-size: 35px;
+}
+.ProseMirror h2 {
+	font-size: 25px;
+}
+.ProseMirror h2 {
+	font-size: 20px;
+}

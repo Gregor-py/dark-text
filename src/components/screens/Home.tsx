@@ -1,4 +1,4 @@
-import CreateDocumentButton from "@/components/ui/CreateDocumentButton";
+import CreateDocumentButton from "@/components/screens/CreateDocumentButton";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import Head from "next/head";
 import { FC } from "react";
@@ -12,7 +12,7 @@ const Home: FC = () => {
       <Box>
         <Grid templateColumns="repeat(6, 1fr)" gap={4}>
           <GridItem>
-            <CreateDocumentButton onClick={() => console.log(0)} />
+            <CreateDocumentButton />
           </GridItem>
           {[1, 2, 3, 4, 5, 6].map((el) => (
             <GridItem

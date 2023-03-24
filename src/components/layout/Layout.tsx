@@ -11,7 +11,7 @@ const Layout: FC<Layout> = ({ children }) => {
   return (
     <Box>
       <Sidebar />
-      <Box pl={24}>
+      <Box pr={8} pl={24}>
         <Header />
         <main>{children}</main>
       </Box>

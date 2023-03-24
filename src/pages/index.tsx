@@ -1,18 +1,7 @@
-import TextEditor from "@/components/editor/TextEditor";
-import { Box } from "@chakra-ui/react";
+import Home from "@/components/screens/Home";
 import { NextPage } from "next";
-import Head from "next/head";
 
-const Home: NextPage = () => {
-  return (
-    <>
-      <Head>
-        <title>Home page</title>
-      </Head>
-      <Box>
-        <TextEditor />
-      </Box>
-    </>
-  );
+const HomePage: NextPage = () => {
+  return <Home />;
 };
-export default Home;
+export default HomePage;

@@ -14,7 +14,7 @@ const Header: FC = () => {
 
   return (
     <>
-      <Flex alignItems={"center"} h={70} px={10}>
+      <Flex alignItems={"center"} h={70}>
         <Spacer />
         {!user || loading ? (
           <Button

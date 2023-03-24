@@ -13,7 +13,7 @@ const Layout: FC<Layout> = ({ children }) => {
       <Sidebar />
       <Box pr={8} pl={24}>
         <Header />
-        <main>{children}</main>
+        <Box mt={3}>{children}</Box>
       </Box>
     </Box>
   );
